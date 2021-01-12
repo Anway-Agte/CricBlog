@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="#">CricBlog</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About the creator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('signup')}}">Sign up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page registration-page">
+        <section class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-dark">Sign Up</h2>
+                </div>
+                <form autocomplete="off" method="POST" action="{{url_for('signup')}}" style="border-top-style: none;box-shadow: 1px 3px 15px 3px var(--gray);">
+                    <div class="form-group"><label for="name">Username</label><input class="form-control item" type="text" id="name" name="username" placeholder="e.g : John_747 "></div>
+                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email" name="email" placeholder="john@zyz.com "></div>
+                    <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" name="password" id="password"></div>
+                    
+                    <div class="form-group"><label for="password">Confirm Password</label><input class="form-control item" type="password" name = "cpassword" id="password-1">
+                    
+                    </div>
+                    {% include "includes/_messages.html" %}
+                    <button class="btn btn-info btn-block" type="submit">Sign Up</button>
+                    
+                </form>
+                
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark" style="height: 88px;">
+        <div class="footer-copyright">
+            <p>© 2020 CricBlog&nbsp;</p>
+        </div>
+    </footer>
+    {% endblock %}

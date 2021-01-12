@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+    {% block body %}
+
+        {% include "includes/_navbar1.html" %}
+    <main class="page landing-page">
+        <section class="clean-block clean-hero" style="color: rgba(242,239,238,0);background: url(&quot;../static/assets/img/scg.jpg&quot;) center / cover, var(--light);filter: saturate(141%);border-color: rgba(236,238,239,0.85);">
+            <div class="text">
+                <h2>Where fans play .</h2>
+                <p class="text-light">Connect with followers of the gentleman's game , across the globe .&nbsp;</p><a class="btn btn-outline-info active btn-lg" role="button" href="{{url_for('signup')}}">Sign Up</a>
+            </div>
+        </section>
+        <section class="clean-block clean-info dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-dark">What is CricBlog ?&nbsp;</h2>
+                    <p><br>An online community made for the fans , by a fan . CricBlog provides you with an exhilarating opportunity to don the expert's hat , and be in the spotlight .&nbsp;<br><br></p>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6"><img class="img-thumbnail" src="../static/assets/img/scenery/commentary.jpg"></div>
+                    <div class="col-md-6">
+                        <h3>In the commentary box&nbsp;<br></h3>
+                        <div class="getting-started-info">
+                            <p>How often have you ranted about or after a game with no one to hear your wisdom ? With CricBlog , the entire community heeds to your opinion and react to it . Provide your insights , and see how they sit with fellow peers .&nbsp;<br></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6"><img class="img-thumbnail" src="../static/assets/img/scenery/sledging.jpeg"></div>
+                    <div class="col-md-6">
+                        <h3>The Firing Range</h3>
+                        <div class="getting-started-info">
+                            <p>A little banter never hurt anybody , nor will it here . A chance to stick it up to the opposition fanbase before/after games , though keeping the standard high , as our players do . After all , we won't like to be banned .&nbsp;<br></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6"><img class="img-thumbnail" src="../static/assets/img/scenery/trophy.jpg"></div>
+                    <div class="col-md-6">
+                        <h3>Scale up the ranks<br></h3>
+                        <div class="getting-started-info">
+                            <p>The more you engage in conversations and discussions , the more points you get , which in turn better your rank . The better your rank , the more often will people see your posts . Win-win !&nbsp;<br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="clean-block features" style="border-bottom: 2px solid var(--dark) ;">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-dark">How it works&nbsp;</h2>
+                    <p>Write , articulate and explain all your thoughts about the game we love .<br></p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-5 feature-box"><i class="far fa-smile-beam icon" style="color: var(--dark);"></i>
+                        <h4>See what you want to see .&nbsp;</h4>
+                        <p>Select the tags you want to follow , and you will see most of the posts related to the topics of your choosing .<br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon" style="color: var(--dark);"></i>
+                        <h4>Type Away</h4>
+                        <p>Truly express yourself in your posts , no character limits whatsoever , unless of course you're stuck in a writer's block .&nbsp;<br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-heart icon" style="color: var(--dark);"></i>
+                        <h4>Support and Grow</h4>
+                        <p>Raise the bat for posts that you like , helping the writer and growing the community .&nbsp;<br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-refresh icon" style="color: var(--dark);"></i>
+                        <h4>All Browser Compatibility</h4>
+                        <p>Mobiles , tablets or PCs , we've got you covered for them all .&nbsp;<br></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="clean-block about-us">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-dark">About Me</h2>
+                    <p></p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="../static/assets/img/avatars/20191027_221517%20(1).jpg">
+                            <div class="card-body info">
+                                <h4 class="card-title">Anway Agte</h4>
+                                <p class="card-text">Keen to explore . Ardent cricket lover . Loves math.<br></p>
+                                <div class="icons"><a href="#"><i class="icon-social-facebook" style="color: var(--dark);"></i></a><a href="#"><i class="icon-social-instagram" style="color: rgb(2,5,7);"></i></a><a href="#"><i class="icon-social-twitter" style="color: rgb(2,6,8);"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark" style="height: 88px;">
+        <div class="footer-copyright">
+            <p>© 2020 CricBlog&nbsp;</p>
+        </div>
+    </footer>
+    {% endblock %}
+  

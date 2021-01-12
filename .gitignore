@@ -2,3 +2,4 @@
 cricblog 
 requirements.txt 
 settings.py 
+.env 
