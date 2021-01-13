@@ -44,13 +44,29 @@ def signup():
         temp = user.User()
 
         result = temp.signup()
+        if not result[1]:
+            flash(result[2], "danger")
+            return render_template("signup.html", user=result[0])
+        else:
+            flash("Account added successfully", "success")
+            return render_template("signup.html")
+    else:
+
+        return render_template("signup.html")
+
+
+@app.route("/login/", methods=["GET", "POST"])
+def login():
+
+    if request.method == "POST":
+        temp = user.User()
+
+        result = temp.login()
         if not result[0]:
             flash(result[1], "danger")
-    return render_template("signup.html")
+        else:
+            flash(result[1], "success")
 
-
-@app.route("/login/")
-def login():
     return render_template("login.html")
 
 

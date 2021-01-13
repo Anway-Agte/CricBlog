@@ -21,9 +21,10 @@
                 <div class="block-heading">
                     <h2 class="text-dark">Sign Up</h2>
                 </div>
+             
                 <form autocomplete="off" method="POST" action="{{url_for('signup')}}" style="border-top-style: none;box-shadow: 1px 3px 15px 3px var(--gray);">
-                    <div class="form-group"><label for="name">Username</label><input class="form-control item" type="text" id="name" name="username" placeholder="e.g : John_747 "></div>
-                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email" name="email" placeholder="john@zyz.com "></div>
+                    <div class="form-group"><label for="name">Username</label><input class="form-control item" value="{%if user%}{{user['username']}}{%endif%}" type="text" id="name" name="username" placeholder="e.g : John_747 "></div>
+                    <div class="form-group"><label for="email">Email</label><input class="form-control item" value="{%if user%}{{user['email']}}{%endif%}" type="email" id="email" name="email" placeholder="john@zyz.com "></div>
                     <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" name="password" id="password"></div>
                     
                     <div class="form-group"><label for="password">Confirm Password</label><input class="form-control item" type="password" name = "cpassword" id="password-1">
