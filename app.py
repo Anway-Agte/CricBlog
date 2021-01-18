@@ -58,16 +58,60 @@ def signup():
 @app.route("/login/", methods=["GET", "POST"])
 def login():
 
+    if "logged_in" in session:
+        return redirect(url_for("forum"))
+
     if request.method == "POST":
         temp = user.User()
 
         result = temp.login()
         if not result[0]:
             flash(result[1], "danger")
+            return redirect(url_for("login"))
         else:
-            flash(result[1], "success")
+
+            return redirect(url_for("forum"))
 
     return render_template("login.html")
+
+
+@app.route("/forum/", methods=["GET", "POST"])
+def forum():
+
+    data = user.User().find_user()
+
+    return render_template("forum.html", data=data)
+
+
+@app.route("/logout/", methods=["GET", "POST"])
+def logout():
+    session.clear()
+
+    return redirect(url_for("index"))
+
+
+@app.route("/create/", methods=["GET", "POST"])
+def create():
+
+    data = user.User().find_user()
+
+    return render_template("create.html", data=data)
+
+
+@app.route("/publish/", methods=["POST"])
+def publish():
+
+    result = user.User().publish()
+
+    if not result[0]:
+        flash(result[1], "danger")
+
+        return redirect(url_for("create"))
+
+    else:
+        flash(result[1], "success")
+
+        return redirect(url_for("create"))
 
 
 if __name__ == "__main__":

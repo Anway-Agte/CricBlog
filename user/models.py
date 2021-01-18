@@ -25,6 +25,7 @@ class User:
             "username": request.form.get("username"),
             "password": request.form.get("password"),
             "cpassword": request.form.get("cpassword"),
+            "rank": "Novice",
             "preferences": [],
             "posts": [],
             "token": random.randint(11111, 99999),
@@ -114,3 +115,56 @@ class User:
             else:
 
                 return [False, "Wrong password please try again ."]
+
+    def find_user(self):
+
+        data = mongo.db.users.find_one({"_id": session["_id"]})
+
+        return data
+
+    def publish(self):
+
+        data = mongo.db.users.find_one({"_id": session["_id"]})
+
+        post = {
+            "_id": uuid.uuid4().hex,
+            "user_id": session["_id"],
+            "username": data["username"],
+            "userrank": data["rank"],
+            "title": request.form.get("title"),
+            "description": request.form.get("description"),
+            "tag_1": request.form.get("tag_1"),
+            "tag_2": request.form.get("tag_2"),
+            "content": request.form.get("content"),
+            "likes": 0,
+            "replies": 0,
+        }
+
+        if post["title"] == "":
+            result = [False, "Please enter a title"]
+
+            return result
+        elif post["description"] == "":
+            result = [False, "Please enter a description"]
+
+            return result
+        elif post["content"] == "":
+            result = [False, "Please enter the content of your post ."]
+
+            return result
+        elif len(post["content"].split()) <= 40:
+            result = [False, "The post should contain atleast 40 words ."]
+
+            return result
+        else:
+            if mongo.db.posts.insert_one(post):
+                result = [True, "Post Created Successfully ."]
+
+                return result
+            else:
+                result = [
+                    False,
+                    "There was some problem with your post . Please try again .",
+                ]
+
+                return result
