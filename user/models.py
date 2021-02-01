@@ -13,6 +13,7 @@ from app import mongo, bcrypt
 import uuid
 import re
 import random
+from datetime import date
 
 
 class User:
@@ -30,6 +31,7 @@ class User:
             "posts": [],
             "token": random.randint(11111, 99999),
             "verified": False,
+            "liked_posts": [],
         }
         if user["email"] == "":
 
@@ -130,6 +132,7 @@ class User:
             "_id": uuid.uuid4().hex,
             "user_id": session["_id"],
             "username": data["username"],
+            "date": str(date.today()),
             "userrank": data["rank"],
             "title": request.form.get("title"),
             "description": request.form.get("description"),
@@ -168,3 +171,13 @@ class User:
                 ]
 
                 return result
+
+    def find_posts(self):
+        posts = mongo.db.posts.find({})
+
+        return posts
+
+    def find_post(self, post_id):
+        post = mongo.db.posts.find_one({"_id": post_id})
+
+        return post

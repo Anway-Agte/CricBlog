@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Blog Post - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/Article-List.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/smoothproducts.css">
-</head>
+  {% block body %}
+  
 
-<body>
     <main class="page blog-post">
         <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
             <div class="container"><a class="navbar-brand logo" href="#">CricBlog</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -47,13 +33,13 @@
                                 </div>
                             </div>
                         </div>
-                        <h3>Lorem Ipsum dolor</h3>
-                        <div class="post-info" style="padding-left: 4px;"><span class="text-dark" style="padding-left: -1px;">By&nbsp;<a class="text-dark" href="#">John Smith</a>&nbsp; ,&nbsp; 27 Jan 2020<br></span><span class="text-dark" style="padding-left: -1px;">Novice&nbsp;</span></div>
+                        <h3>{{post['title']}}</h3>
+                        <div class="post-info" style="padding-left: 4px;"><span class="text-dark" style="padding-left: -1px;">By&nbsp;<a class="text-dark" href="#">{{post['username']}}</a>&nbsp; ,&nbsp; {{post['date']}}<br></span><span class="text-dark" style="padding-left: -1px;">{{post['userrank']}}&nbsp;</span></div>
                         <figure class="figure"><img class="rounded img-fluid figure-img d-flex" src="assets/img/scenery/trophy.jpg">
                             <figcaption class="figure-caption">Lorem ipsum dolor</figcaption>
                         </figure>
-                        <p style="font-size: 16px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br><br></p>
-                        <div data-toggle="tooltip" data-bs-tooltip="" class="post-info"><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" style="width: 0px;" title="Like">&nbsp;<button class="btn btn-dark" type="button"><i class="far fa-heart"></i>&nbsp; 24</button><a class="text-dark" href="#"></a>&nbsp;&nbsp;</span><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" title="Reply">&nbsp;<a class="text-dark" data-toggle="tooltip" data-bs-tooltip="" id="trigger-modal" href="#" title="Reply"><button class="btn btn-dark" data-toggle="modal" data-target="#modal1" type="button"><i class="fa fa-reply"></i>&nbsp;24</button></a></span></div>
+                        <p style="font-size: 16px;">{{post['content']}}<br><br></p>
+                        <div data-toggle="tooltip" data-bs-tooltip="" class="post-info"><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" style="width: 0px;" title="Like">&nbsp;<button class="btn btn-dark" id = "like" type="button"><i class="far fa-heart"></i>&nbsp;{{post['likes']}}</button><a class="text-dark" href="#"></a>&nbsp;&nbsp;</span><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" title="Reply">&nbsp;<a class="text-dark" data-toggle="tooltip" data-bs-tooltip="" id="trigger-modal" href="#" title="Reply"><button class="btn btn-dark" data-toggle="modal" data-target="#modal1" type="button"><i class="fa fa-reply"></i>&nbsp;{{post['replies']}}</button></a></span></div>
                     </div>
                 </div>
             </div>
@@ -103,17 +89,9 @@
             </div>
         </section>
     </main>
-    <footer class="page-footer dark" style="height: 88px;">
-        <div class="footer-copyright">
-            <p>© 2020 CricBlog&nbsp;</p>
-        </div>
-    </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="assets/js/smoothproducts.min.js"></script>
-    <script src="assets/js/theme.js"></script>
-</body>
+    {% endblock %} 
 
-</html>
+    {% block js %}
+    <script src = "../static/assets/js/likes.js"></script>
+    {% endblock %}
+    

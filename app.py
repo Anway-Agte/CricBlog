@@ -11,7 +11,7 @@ from flask import (
     Markup,
     jsonify,
 )
-
+from flask_socketio import SocketIO, emit
 from flask_bcrypt import Bcrypt
 from flask_pymongo import PyMongo
 import pymongo
@@ -20,12 +20,14 @@ import os
 app = Flask(__name__)
 from user import routes
 
-app.config["SECRET_KEY"] = os.getenv("APP_SECRET_KEY")
+app.secret_key = (
+    "\xea\xf5|k\xb8\x02+\xba\x18\x90\x80v\xcb?\xab\xab\x8d\x86\x92\xe5\xff\xbe"
+)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/CricBlog"
 
 
 bcrypt = Bcrypt(app)
-
+socketio = SocketIO(app)
 import user.models as user
 
 mongo = PyMongo(app)
@@ -80,7 +82,9 @@ def forum():
 
     data = user.User().find_user()
 
-    return render_template("forum.html", data=data)
+    posts = list(user.User().find_posts())
+
+    return render_template("forum.html", data=data, posts=posts)
 
 
 @app.route("/logout/", methods=["GET", "POST"])
@@ -114,5 +118,22 @@ def publish():
         return redirect(url_for("create"))
 
 
+@app.route("/post/<post_id>", methods=["GET", "POST"])
+def post(post_id):
+
+    post = user.User().find_post(post_id)
+
+    return render_template("blog-post.html", post=post)
+
+
+@app.route("/like-unlike/<post_id>", methods=["POST"])
+def like_unlike(post_id):
+
+    print(post_id)
+
+    return ("nice af", 200)
+
+
 if __name__ == "__main__":
+
     app.run(debug=True)
