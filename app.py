@@ -123,15 +123,28 @@ def post(post_id):
 
     post = user.User().find_post(post_id)
 
-    return render_template("blog-post.html", post=post)
+    replies = list(user.User().find_replies(post_id))
+
+    return render_template("blog-post.html", post=post, replies=replies)
 
 
 @app.route("/like-unlike/<post_id>", methods=["POST"])
 def like_unlike(post_id):
 
-    print(post_id)
+    if post_id:
+        res = user.User().like_unlike(post_id)
 
-    return ("nice af", 200)
+    return (res, 200)
+
+
+@app.route("/reply/<post_id>", methods=["POST"])
+def reply(post_id):
+
+    result = user.User().reply(post_id)
+
+    print(result)
+
+    return redirect(url_for("post", post_id=post_id))
 
 
 if __name__ == "__main__":

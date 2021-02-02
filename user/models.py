@@ -181,3 +181,49 @@ class User:
         post = mongo.db.posts.find_one({"_id": post_id})
 
         return post
+
+    def like_unlike(self, post_id):
+
+        user_info = mongo.db.users.find_one({"_id": session["_id"]})
+
+        if post_id in user_info["liked_posts"]:
+
+            post = mongo.db.posts.find_one_and_update(
+                {"_id": post_id}, {"$inc": {"likes": -1}}, new=True
+            )
+            mongo.db.users.update(
+                {"_id": session["_id"]}, {"$pull": {"liked_posts": post_id}}
+            )
+
+            return str(post["likes"])
+
+        else:
+            post = mongo.db.posts.find_one_and_update(
+                {"_id": post_id}, {"$inc": {"likes": 1}}, new=True
+            )
+            mongo.db.users.update(
+                {"_id": session["_id"]}, {"$push": {"liked_posts": post_id}}
+            )
+            return str(post["likes"])
+
+    def reply(self, post_id):
+
+        reply = {
+            "_id": uuid.uuid4().hex,
+            "post_id": post_id,
+            "reply_username": mongo.db.users.find_one({"_id": session["_id"]})[
+                "username"
+            ],
+            "content": request.form.get("reply"),
+        }
+
+        if mongo.db.replies.insert_one(reply):
+            return "Replied Successfully"
+        else:
+            return "There was some error"
+
+    def find_replies(self, post_id):
+
+        replies = mongo.db.replies.find({"post_id": post_id})
+
+        return replies

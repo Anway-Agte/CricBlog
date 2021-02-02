@@ -26,10 +26,12 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title" style="padding-top: 6px;padding-bottom: 7px;">Replying to&nbsp;</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        <h4 class="modal-title" style="padding-top: 6px;padding-bottom: 7px;">Replying to {{post["username"]}}&nbsp;</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     </div>
-                                    <div class="modal-body"><input class="form-control-lg" type="text" style="width: 453px;box-shadow: 0px 0px;border-style: solid;border-color: var(--light);color: var(--dark);" placeholder="Enter your reply" name="reply"></div>
-                                    <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Reply</button></div>
+                                    <form method="POST" action="{{ url_for('reply' , post_id = post['_id'])}}">
+                                    <div class="modal-body"><input class="form-control-lg" name = "reply" type="text" style="width: 453px;box-shadow: 0px 0px;border-style: solid;border-color: var(--light);color: var(--dark);" placeholder="Enter your reply" name="reply"></div>
+                                    <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary"  type="submit">Reply</button></div>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +41,7 @@
                             <figcaption class="figure-caption">Lorem ipsum dolor</figcaption>
                         </figure>
                         <p style="font-size: 16px;">{{post['content']}}<br><br></p>
-                        <div data-toggle="tooltip" data-bs-tooltip="" class="post-info"><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" style="width: 0px;" title="Like">&nbsp;<button class="btn btn-dark" id = "like" type="button"><i class="far fa-heart"></i>&nbsp;{{post['likes']}}</button><a class="text-dark" href="#"></a>&nbsp;&nbsp;</span><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" title="Reply">&nbsp;<a class="text-dark" data-toggle="tooltip" data-bs-tooltip="" id="trigger-modal" href="#" title="Reply"><button class="btn btn-dark" data-toggle="modal" data-target="#modal1" type="button"><i class="fa fa-reply"></i>&nbsp;{{post['replies']}}</button></a></span></div>
+                        <div data-toggle="tooltip" data-bs-tooltip="" class="post-info"><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" style="width: 0px;" title="Like">&nbsp;<button class="btn btn-dark" id = "like" type="button"><i class="far fa-heart"></i>&nbsp;{{post['likes']}}</button><a class="text-dark" href="#"></a>&nbsp;&nbsp;</span><span class="text-dark" data-toggle="tooltip" data-bs-tooltip="" title="Reply">&nbsp;<a class="text-dark" data-toggle="tooltip" data-bs-tooltip="" id="trigger-modal" href="#" title="Reply"><button class="btn btn-dark" data-toggle="modal" data-target="#modal1" type="button"><i class="fa fa-reply"></i>&nbsp;{{replies|length}}</button></a></span></div>
                     </div>
                 </div>
             </div>
@@ -51,36 +53,18 @@
                         <div class="row">
                             <div class="col">
                                 <div role="tablist" id="accordion-1">
+                                    {% for reply in replies %}
                                     <div class="card">
                                         <div class="card-header" role="tab">
-                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1">Accordion Item</a></h5>
+                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .{{reply['_id']}}" data-target= ".{{reply['_id']}}">{{reply["reply_username"]}} says</a></h5>
                                         </div>
-                                        <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                                        <div class="collapse show {{reply['_id']}}" role="tabpanel" data-parent="#accordion-1">
                                             <div class="card-body">
-                                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                                                <p class="card-text">{{reply["content"]}}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card">
-                                        <div class="card-header" role="tab">
-                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="#accordion-1 .item-2">Accordion Item</a></h5>
-                                        </div>
-                                        <div class="collapse item-2" role="tabpanel" data-parent="#accordion-1">
-                                            <div class="card-body">
-                                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" role="tab">
-                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="#accordion-1 .item-3">Accordion Item</a></h5>
-                                        </div>
-                                        <div class="collapse item-3" role="tabpanel" data-parent="#accordion-1">
-                                            <div class="card-body">
-                                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -92,6 +76,29 @@
     {% endblock %} 
 
     {% block js %}
+    <script>
+        $(document).ready(function(){
+
+$("#like").click(function(){
+    
+    var postId = "{{post['_id']}}" ;  
+    $.ajax({
+
+        url : "{{url_for('like_unlike' , post_id = post['_id'])}}" ,
+        type : "post" , 
+        success : function(result){
+            $("#like").html("<i class='far fa-heart'></i>&nbsp;" + result) ; 
+             
+        } ,
+        error : function(result){
+            alert("ono") ; 
+        }
+    }) ;
+})
+
+}) ; 
+
+    </script>
     <script src = "../static/assets/js/likes.js"></script>
     {% endblock %}
     
