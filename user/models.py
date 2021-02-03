@@ -163,6 +163,10 @@ class User:
             if mongo.db.posts.insert_one(post):
                 result = [True, "Post Created Successfully ."]
 
+                mongo.db.users.update(
+                    {"_id": session["_id"]}, {"$push": {"posts": post["_id"]}}
+                )
+
                 return result
             else:
                 result = [
@@ -218,6 +222,7 @@ class User:
         }
 
         if mongo.db.replies.insert_one(reply):
+            mongo.db.posts.update({"_id": post_id}, {"$inc": {"replies": 1}})
             return "Replied Successfully"
         else:
             return "There was some error"

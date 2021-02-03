@@ -84,7 +84,7 @@ def forum():
 
     posts = list(user.User().find_posts())
 
-    return render_template("forum.html", data=data, posts=posts)
+    return render_template("forum.html", data=data, posts=posts[::-1])
 
 
 @app.route("/logout/", methods=["GET", "POST"])
@@ -125,7 +125,7 @@ def post(post_id):
 
     replies = list(user.User().find_replies(post_id))
 
-    return render_template("blog-post.html", post=post, replies=replies)
+    return render_template("blog-post.html", post=post, replies=replies[::-1])
 
 
 @app.route("/like-unlike/<post_id>", methods=["POST"])
@@ -145,6 +145,13 @@ def reply(post_id):
     print(result)
 
     return redirect(url_for("post", post_id=post_id))
+
+
+@app.route("/profile/", methods=["GET", "POST"])
+def profile():
+    profile = user.User().find_user()
+
+    return render_template("profile.html", data=profile)
 
 
 if __name__ == "__main__":
