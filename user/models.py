@@ -232,3 +232,51 @@ class User:
         replies = mongo.db.replies.find({"post_id": post_id})
 
         return replies
+
+    def add_preferences(self):
+
+        tags = [
+            "Afghanistan",
+            "Australia",
+            "Bangladesh",
+            "India",
+            "Sri Lanka",
+            "Pakistan",
+            "South Africa",
+            "England",
+            "New Zealand",
+            "West Indies",
+            "M Indians",
+            "Super Kings",
+            "Royal Challengers",
+            "Thunder",
+            "Renegades",
+            "Royals",
+            "Knight Riders",
+            "Kings XI ",
+            "Capitals",
+            "Hurricanes",
+            "Stars",
+            "Scorchers",
+            "Sunrisers",
+            "Heat",
+            "Sixers",
+            "Strikers",
+        ]
+
+        for tag in tags:
+
+            doc = {"_id": uuid.uuid4().hex, "tag": tag, "followers": 0}
+
+            mongo.db.preferences.insert_one(doc)
+
+        return "ok"
+
+    def get_preferences(self):
+
+        prefs = list(mongo.db.preferences.find({}))
+        preferences = []
+        for p in prefs:
+            preferences.append(p["tag"])
+
+        return preferences

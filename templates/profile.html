@@ -33,44 +33,33 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col offset-md-0">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-10"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-9"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-8"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-7"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-1">Label</label></div>
+                                    {% for ctag in country_tags %}
+                                    <div class="form-check"><input class="form-check-input" name = "{{ctag}}" type="checkbox" id="formCheck-10"><label class="form-check-label" for="formCheck-1">{{ctag}}</label></div>
+                                    {% endfor %}
+                                    
+                                    
+                                    
                                 </div>
                                 <div class="col">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-21"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-20"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-19"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-18"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-17"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-16"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-15"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-14"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-13"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-12"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-11"><label class="form-check-label" for="formCheck-1">Label</label></div>
+                                    {% for ltag in league_tags[:8] %}
+                                    <div class="form-check"><input class="form-check-input" name = "{{ltag}}" type="checkbox" id="formCheck-21"><label class="form-check-label" for="formCheck-1">{{ltag}}</label></div>
+                                    {% endfor %}
+                                    
+                                    
+                                   
                                 </div>
                                 <div class="col">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-30"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-29"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-28"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-27"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-26"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-25"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-24"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-23"><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-22"><label class="form-check-label" for="formCheck-1">Label</label></div>
+                                    {% for ltag in league_tags[8:] %}
+                                    <div class="form-check"><input class="form-check-input" name = "{{ltag}}" type="checkbox" id="formCheck-21"><label class="form-check-label" for="formCheck-1">{{ltag}}</label></div>
+                                    {% endfor %}
+                                    
+                                    
+                                   
                                 </div>
+                               
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" data-dismiss = "modal" type="submit">Save</button></div>
                     </div>
                 </div>
             </div>
@@ -128,7 +117,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <h4 class="card-title" style="margin-top: 13px;"><a href="#">Change your preferences</a></h4>
+                                <h4 class="card-title" style="margin-top: 13px;"><a href="#modal1" data-toggle="modal" data-target="#modal1" >Change your preferences</a></h4>
                             </div>
                         </div>
                     </div>

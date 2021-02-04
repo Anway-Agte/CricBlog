@@ -151,7 +151,23 @@ def reply(post_id):
 def profile():
     profile = user.User().find_user()
 
-    return render_template("profile.html", data=profile)
+    preferences = user.User().get_preferences()
+
+    print(preferences)
+
+    return render_template(
+        "profile.html",
+        data=profile,
+        country_tags=preferences[:10],
+        league_tags=preferences[10:],
+    )
+
+
+@app.route("/add_preferences", methods=["GET", "POST"])
+def add_preferences():
+    print(user.User().add_preferences())
+
+    return "Hello World"
 
 
 if __name__ == "__main__":
