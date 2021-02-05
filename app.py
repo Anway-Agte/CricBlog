@@ -99,7 +99,9 @@ def create():
 
     data = user.User().find_user()
 
-    return render_template("create.html", data=data)
+    preferences = user.User().get_preferences()
+
+    return render_template("create.html", data=data, preferences=preferences)
 
 
 @app.route("/publish/", methods=["POST"])
@@ -108,7 +110,7 @@ def publish():
     result = user.User().publish()
 
     if not result[0]:
-        flash(result[1], "danger")
+        flash(result[2], "danger")
 
         return redirect(url_for("create"))
 
@@ -168,6 +170,22 @@ def add_preferences():
     print(user.User().add_preferences())
 
     return "Hello World"
+
+
+@app.route("/update_preferences/", methods=["GET", "POST"])
+def updatePreferences():
+
+    result = user.User().updatePreference()
+
+    if result[0]:
+
+        flash(result[1], "success")
+
+    else:
+
+        flash(result[1], "warning")
+
+    return redirect(url_for("profile"))
 
 
 if __name__ == "__main__":

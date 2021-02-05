@@ -159,6 +159,15 @@ class User:
             result = [False, "The post should contain atleast 40 words ."]
 
             return result
+
+        elif post["tag_1"] == post["tag_2"]:
+
+            if post["tag_1"] == "":
+                result = [False, "Please select atleast one tag ."]
+            else:
+                result = [False, "Both tags cannot be the same ."]
+
+            return result
         else:
             if mongo.db.posts.insert_one(post):
                 result = [True, "Post Created Successfully ."]
@@ -280,3 +289,22 @@ class User:
             preferences.append(p["tag"])
 
         return preferences
+
+    def updatePreference(self):
+        preferences = request.form.getlist("preferences")
+
+        if len(preferences) > 8:
+
+            return [False, "Max limit is 8 tags . "]
+
+        else:
+
+            if mongo.db.users.update_one(
+                {"_id": session["_id"]}, {"$set": {"preferences": preferences}}
+            ):
+
+                return [True, "Preferences updated"]
+
+            else:
+
+                return [False, "Sorry there was a problem , please try again"]

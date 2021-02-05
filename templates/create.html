@@ -47,14 +47,19 @@
                                     <div class="form-group"><label>Title</label><input name = "title" class="form-control" type="text"></div>
                                     <div class="form-group"><label>Description(15 - 30 words)</label><textarea name = "description" class="form-control" style="height: 37px;"></textarea></div>
                                     <div class="form-group"><label>Tag 1</label><select name = "tag_1" class="form-control">
-                                            <option value="12" selected="">This is item 1</option>
-                                            <option value="13">This is item 2</option>
+                                            <option value="" selected=""></option>
+                                            {% for preference in preferences %}
+                                            <option value="{{preference}}">{{preference}}</option>
+                                            {% endfor %}
+                                            
+                                            
                                             <option value="14">This is item 3</option>
                                         </select></div>
                                     <div class="form-group"><label>Tag 2</label><select name = "tag_2" class="form-control">
-                                            <option value="12" selected="">This is item 1</option>
-                                            <option value="13">This is item 2</option>
-                                            <option value="14">This is item 3</option>
+                                        <option value="" selected=""></option>
+                                        {% for preference in preferences %}
+                                        <option value="{{preference}}">{{preference}}</option>
+                                        {% endfor %}
                                         </select></div><label>Image (Optional)</label>
                                     <div class="form-group"><input type="file"></div>
                                 
