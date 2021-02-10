@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="#">CricBlog</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('forum')}}">Forum</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('create')}}">Write a new BLOG</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{url_for('profile')}}">{{data["username"]}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page blog-post-list">
+        <section class="clean-block clean-blog-list dark">
+            <div class="container">
+                <div class="block-heading" style="height: 48px;">
+                    <header></header>
+                </div>
+                <div class="block-content" style="margin-top: -35px;box-shadow: 1px 3px 15px 4px var(--gray);">
+                   {% for post in posts %}
+                    <div class="clean-blog-post">
+                        <div class="row">
+                            <div class="col-lg-5"><img class="rounded img-fluid" src="assets/img/tech/image4.jpg"></div>
+                            <div class="col-lg-7">
+                                <h3>{{post['title']}}</h3>
+                                <div class="text-info info" style="padding-bottom: 0px;"><span class="text-dark">By&nbsp;<a href="#">{{post['username']}}</a>&nbsp; &nbsp;, {{post['date']}}<br></span><span class="text-dark">{{post['userrank']}}<br></span></div>
+                                <p style="margin-top: 7px;">{{post['description']}}</p><a class="btn btn-dark btn-sm text-light" role="button" href="{{url_for('post' , post_id = post['_id'])}}" style="color: var(--light);">Read Post</a>
+                                <div></div><sub style="margin-right: 2px;margin-left: 3px;margin-bottom: 14px;margin-top: -12px;"><i class="fa fa-heart-o" style="margin: 0px;margin-top: 12px;"></i>&nbsp; &nbsp;{{post['likes']}}&nbsp;</sub><sub>&nbsp;<i class="fa fa-flag"></i>&nbsp;{{post['replies']}}</sub>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                   {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark" style="height: 88px;">
+        <div class="footer-copyright">
+            <p>© 2020 CricBlog&nbsp;</p>
+        </div>
+    </footer>
+    {% endblock %}

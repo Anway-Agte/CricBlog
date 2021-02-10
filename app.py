@@ -155,8 +155,6 @@ def profile():
 
     preferences = user.User().get_preferences()
 
-    print(preferences)
-
     return render_template(
         "profile.html",
         data=profile,
@@ -186,6 +184,16 @@ def updatePreferences():
         flash(result[1], "warning")
 
     return redirect(url_for("profile"))
+
+
+@app.route("/my_posts/", methods=["GET", "POST"])
+def myPosts():
+
+    my_posts = user.User().getMyPosts()
+
+    profile = user.User().find_user()
+
+    return render_template("myposts.html", data=profile, posts=my_posts)
 
 
 if __name__ == "__main__":

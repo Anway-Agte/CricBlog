@@ -84,6 +84,19 @@
                     </div>
                 </div>
             </div>
+            <div role="dialog" tabindex="-1" class="modal fade" id = "modal2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ranking System</h4><button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>There are 3 ranks in the CricBlog Forum . <br /><br />1.) Everyone starts off with a rank of <strong>Novice</strong> . <br />     This just means that your posts won&#39;t be seen by other       people as they would of users with a higher rank . <br /><br />2.)As your activity increases on our website , you start<br />     collecting points , every like , reply and view on your             posts contributes towards it , though they should be           from other users . Once your activity breaches the                 minimum required barrier , you become an                             <strong>Intermediate </strong>. Your new and old posts will both                     be more frequent on the forum lists .  <br /><br />3.) Building on that , after a lot of posting and                                acknowledgement from fellows , you will be                            promoted to <strong>Expert</strong> . Your posts would be on the top          of the list and every post will be followed with a                      notification to all other users .  </p>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-dark">Welcome , {{data['username']}}</h2>
@@ -94,7 +107,7 @@
                             <div class="card-body" style="box-shadow: 1px 3px 15px 3px var(--gray);">
                                 <h3>Rank : {{ data['rank']}}&nbsp;&nbsp;</h3>
                                 <p class="card-text">Your rank is a crucial factor , determining the reach of your posts . Also don't forget the tacit respect within the community for someone who's an expert .&nbsp;<br><br></p>
-                                <h4 class="card-title"><a href="#">See the ranking system</a></h4>
+                                <h4 class="card-title"><a href="#modal2" data-toggle="modal" data-target="#modal2">See the ranking system</a></h4>
                             </div>
                         </div>
                     </div>
@@ -109,7 +122,7 @@
                                     <li>Replies : 12312</li>
                                     
                                 </ul>
-                                <h4 class="card-title"><a href="#">Check all your posts</a></h4>
+                                <h4 class="card-title"><a href="{{url_for('myPosts')}}">Check all your posts</a></h4>
                             </div>
                         </div>
                     </div>

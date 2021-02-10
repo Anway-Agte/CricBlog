@@ -308,3 +308,9 @@ class User:
             else:
 
                 return [False, "Sorry there was a problem , please try again"]
+
+    def getMyPosts(self):
+
+        my_posts = list(mongo.db.posts.find({"user_id": session["_id"]}))
+
+        return my_posts
